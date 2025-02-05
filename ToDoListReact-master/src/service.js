@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiUrl = "http://localhost:5059";
+const apiUrl = process.env.REACT_APP_API_URL
 
 const apiClient=axios.create({
   baseURL:apiUrl

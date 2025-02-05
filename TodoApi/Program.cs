@@ -10,7 +10,6 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
-
 // builder.Services.AddDbContext<ToDoDbContext>(options =>
 //     options.UseMySql("name=tododb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.41-mysql")));
 builder.Services.AddDbContext<ToDoDbContext>(options =>
@@ -34,8 +33,6 @@ app.MapPost("/items", async (Item item, ToDoDbContext db) =>
     await db.SaveChangesAsync();
     return Results.Created($"/items/{item.Id}", item);
 });
-
-
 app.MapPut("/items/{id}", async (int id, bool iscomplete, ToDoDbContext db) =>
 {
     var item = await db.Items.FindAsync(id);
@@ -44,8 +41,6 @@ app.MapPut("/items/{id}", async (int id, bool iscomplete, ToDoDbContext db) =>
     await db.SaveChangesAsync();
     return Results.NoContent();
 });
-
-
 app.MapDelete("/items/{id}", async (int id, ToDoDbContext db) =>
 {
     var item = await db.Items.FindAsync(id);
